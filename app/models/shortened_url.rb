@@ -21,8 +21,21 @@ class ShortenedUrl < ActiveRecord::Base
   has_many(
     :visitors,
     through: :visits,
-    source: :visitor
+    source: :visitor,
+    uniq: true
   )
+
+  def num_clicks
+    self.visits.count
+  end
+
+  def num_uniques
+    self.visitors.count
+  end
+
+  def num_recent_uniques
+    self.visitors.where("visits.created_at > ?", 10.minutes.ago).count
+  end
 
   def self.random_code
     random_code = SecureRandom::urlsafe_base64

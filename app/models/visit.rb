@@ -17,7 +17,7 @@ class Visit < ActiveRecord::Base
 
   def self.record_visit!(user, shortened_url)
     Visit.create!(
-      shortened_url_id: shortened_url.id
+      shortened_url_id: shortened_url.id,
       user_id: user.id
     )
   end
