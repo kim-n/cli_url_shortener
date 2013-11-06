@@ -1,6 +1,11 @@
 class ShortenedUrl < ActiveRecord::Base
-  # attr_accessible :title, :body
 
-  validates :shorturl, :longurl, :user_id, :presence => true
-  validates :shorturl, :uniqueness => true
-end
+  validates :short_url, :long_url, :user_id, :presence => true
+  validates :short_url, :uniqueness => true
+
+  belongs_to(
+    :submitter,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
