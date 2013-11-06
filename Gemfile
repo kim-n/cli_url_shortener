@@ -38,3 +38,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'pry-rails'
+
+
+gem 'launchy'
